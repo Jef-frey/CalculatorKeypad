@@ -12,22 +12,22 @@ char read_switch;
 
 void setup() {
   // initialization
-//  keyboard_initialize();
+  keyboard_initialize();
   oled_initialize();
 
   // display the screen as initial state
-  cal_display.hello_world();
   print_calculator(cal_display);
-
 }
 
 void loop() {
 
-/*  1. constantly poll and wait for switch press
- *  2. once a press is detected, debounce for 5 ms
- *  3. read in pressed character
- *  4. wait for user 'unpress', debounce for 5 ms
- */
+  read_switch = get_pressed_switch();
+
+  if (read_switch != '?') {
+    cal_display.shift_bottom_display(read_switch);
+    print_calculator(cal_display);
+  }
+  
 //  read_switch = get_pressed_switch();
 //  if (read_switch != ' ') {
 //    switch_debounce();

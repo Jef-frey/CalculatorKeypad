@@ -92,13 +92,24 @@ void oled_initialize() {
   u8g2.begin();
 }
 
-void update_formula(char *row_1, char *row_2) {
+void print_calculator(display_buf calculator_display) {
   u8g2.firstPage();
   do {
     u8g2.setFont(Helvetica_custom);
-    u8g2.setCursor(256-u8g2.getStrWidth(row_1), 31);
-    u8g2.println(row_1);
-    u8g2.setCursor(256-u8g2.getStrWidth(row_2), 63);
-    u8g2.println(row_2);
+    u8g2.setCursor(256-u8g2.getStrWidth(calculator_display.top_display), 31);
+    u8g2.println(calculator_display.top_display);
+    u8g2.setCursor(256-u8g2.getStrWidth(calculator_display.bottom_display), 63);
+    u8g2.println(calculator_display.bottom_display);
   } while ( u8g2.nextPage() );
 }
+
+//void update_formula(char *row_1, char *row_2) {
+//  u8g2.firstPage();
+//  do {
+//    u8g2.setFont(Helvetica_custom);
+//    u8g2.setCursor(256-u8g2.getStrWidth(row_1), 31);
+//    u8g2.println(row_1);
+//    u8g2.setCursor(256-u8g2.getStrWidth(row_2), 63);
+//    u8g2.println(row_2);
+//  } while ( u8g2.nextPage() );
+//}

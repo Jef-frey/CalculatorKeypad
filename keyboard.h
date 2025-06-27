@@ -1,30 +1,23 @@
+//'oled' will have code directly related to key switches
+
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-#include <stdbool.h>
-#include <ctype.h>
+const int KEY_COUNT = 17;
+const int  KEY_PINS[KEY_COUNT] = {  21, 47, 4, 45,  0, 35, 36, 37, 38, 39, 40, 41, 42,  2,  1, 44, 43 };
+const char KEY_CHAR[KEY_COUNT] = { 'N','/','*','-','+','E','9','8','7','6','5','4','3','2','1','0','.' };
 
-const int SRC_COUNT = 5;
-const int DRN_COUNT = 4;
-
-const int SRC_PINS[SRC_COUNT] = { 16, 21, 17, 32, 22 };
-const int DRN_PINS[DRN_COUNT] = { 1, 3, 5, 0 };
-const char KEYPAD[SRC_COUNT][DRN_COUNT] = {
-  {'N','N','N','N'},
-  {'/','*','-','+'},
-  {'6','7','8','9'},
-  {'2','3','4','5'},
-  {'0','1','.','E'}
-};
-
+//initialize the pins as input pins with internal weak pull-up
 void keyboard_initialize();
 
+// iterate through key pins and return the button pressed, if none is pressed, return 'x'
 char get_pressed_switch();
 
-void wait_until_unpressed();
+// wait until the switch was let go
+void wait_until_unpressed(int pressed_pin_index);
 
-void switch_debounce();
+// wait for switch debounce, then unpressed, then debounce again
+void switch_debounce(int pressed_pin_index);
 
-bool isoperator(char char_in);
 
 #endif
