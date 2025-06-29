@@ -32,12 +32,20 @@ class display_buf {
     
     // invoked after an operand is entered into the formula and bottom row is cleared for new entry
     void clear_bottom_display();
+
+    // invoked after top display is updated while previous result is still on top display, prevents previous result from being shifted in
+    void clear_top_display();
     
     // invoked when user needs to change the last operator entered after it is entered
     void edit_last_operator(char new_operator);
 
+    // left shift the display_buf and change the index value accordingly
     int shift_in(char input_char, int index, char * display_addr);
+
+    // move bottom display to top display
+    void result_top_display();
 };
 
+bool isoperator(char char_in);
 
 #endif
