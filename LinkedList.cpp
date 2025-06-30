@@ -3,38 +3,24 @@
 // constructor function, creates a node that points to NULL, LinkedList head 
 // and tail both point to that node
 LinkedList::LinkedList () {
-  Node * newNode = new Node();
-  newNode->next = NULL;
-  head = newNode;
-  tail = newNode;
+  tail = head;
 }
 
-// add in a new node at the end of the LinkedList and set tail to point to node
-void LinkedList::appendList(long double operand_in, char operator_in) {
+
+// first node will be set, else a node will be created and add to the LinkedList
+void LinkedList::enterNode(long double operand_in, char operator_in) {
   Node * newNode = new Node();
   newNode->operand = operand_in;
   newNode->operator_type = operator_in;
   newNode->next = NULL;
+  
   // have the last node points to new node and make the new node the last node
-  tail->next = newNode;
+  if (head == NULL) {
+    head = newNode;
+  } else {
+    tail->next = newNode;
+  }
   tail = newNode;
-}
-
-// set the first node with the input parameters
-void LinkedList::setFirstNode(long double operand_in, char operator_in) {
-  head->operand = operand_in;
-  head->operator_type = operator_in;
-}
-
-// entry_flag signals whether or not any operand has been entered, if no operand exist,
-// first node will be set, else a node will be created and add to the LinkedList
-void LinkedList::enterNode(long double operand_in, char operator_in, int entry_flag) {
-//  if LinkedList is empty, edit the only Node, else append to it
-    if (entry_flag == 0) {
-        setFirstNode(operand_in, operator_in);
-    } else {
-        appendList(operand_in, operator_in);
-    }
 }
 
 // member function to edit operator_type
@@ -103,6 +89,9 @@ long double LinkedList::computeFormula() {
 
     deleteHead();
   }
+
+  Node* temp = head;
+  delete temp;
   
   return result;
 }
@@ -120,4 +109,13 @@ void LinkedList::deleteHead() {
   Node* temp = head;
   head = head -> next;
   delete temp;
+}
+
+// check if the LinkedList has at least one node
+bool LinkedList::isEmpty(){
+  if (head == NULL){
+    return true;
+  } else {
+    return false;
+  }
 }

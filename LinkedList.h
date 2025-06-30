@@ -16,12 +16,7 @@ class LinkedList {
   public:
     LinkedList();
 
-//    this function add another node to the linked list
-    void appendList(long double operand_in, char operator_in);
-
-    void setFirstNode(long double operand_in, char operator_in);
-
-    void enterNode(long double operand_in, char operator_in, int entry_flag);
+    void enterNode(long double operand_in, char operator_in);
 
     void setOperator(char operator_in);
 
@@ -30,6 +25,8 @@ class LinkedList {
     void deleteHead();
 
     Node * deleteNode(Node * ptr);
+
+    bool isEmpty();
 };
 
 #endif

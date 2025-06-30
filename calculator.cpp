@@ -3,6 +3,7 @@
 
 calculator::calculator() {
   state = idle;
+  last_result = 0;
 //  init linked list
 //  calculator_display
 }
@@ -29,15 +30,21 @@ void calculator::operate_input(char input_char) {
         calculator_display.shift_bottom_display(input_char);
         state = decminal;
       } else if (isoperator(input_char)) {        
+        formula.enterNode(atof(calculator_display.bottom_display), input_char);
+        
         calculator_display.update_top_display(input_char);
         calculator_display.clear_bottom_display();
         state = operating;
       } else if (input_char == 'E') {
-//        only run if linkedlist has more than one node
-        last_result = 0; // calculated by LinkedList
-        calculator_display.update_top_display(input_char);
-        calculator_display.print_result(last_result);
-        state = result;
+//        only run if linkedlist has at least one node
+        if (!formula.isEmpty()){
+          formula.enterNode(atof(calculator_display.bottom_display), input_char);
+          last_result = formula.computeFormula();
+
+          calculator_display.update_top_display(input_char);
+          calculator_display.print_result(last_result);
+          state = result;
+        }
       }
       break;
       
@@ -46,15 +53,21 @@ void calculator::operate_input(char input_char) {
         calculator_display.shift_bottom_display(input_char);
         state = decminal;
       } else if (isoperator(input_char)) {
+        formula.enterNode(atof(calculator_display.bottom_display), input_char);
+        
         calculator_display.update_top_display(input_char);
         calculator_display.clear_bottom_display();
         state = operating;
       } else if (input_char == 'E') {
-//        only run if linkedlist has more than one node
-        last_result = 0; // calculated by LinkedList
-        calculator_display.update_top_display(input_char);
-        calculator_display.print_result(last_result);
-        state = result;
+//        only run if linkedlist has at least one node
+        if (!formula.isEmpty()){
+          formula.enterNode(atof(calculator_display.bottom_display), input_char);
+          last_result = formula.computeFormula();
+
+          calculator_display.update_top_display(input_char);
+          calculator_display.print_result(last_result);
+          state = result;
+        }
       }
       break;
       
@@ -66,13 +79,20 @@ void calculator::operate_input(char input_char) {
         calculator_display.shift_bottom_display(input_char);
         state = decminal;
       } else if (isoperator(input_char)) {
+        formula.setOperator(input_char);
+        
         calculator_display.edit_last_operator(input_char);
         state = operating;
       } else if (input_char == 'E') {
-//        only run if linkedlist has more than one node and last_node is not nan
-        calculator_display.update_top_display(input_char);
-        calculator_display.print_result(last_result);
-        state = result;
+//        only run if linkedlist has more than one node, use last_result as last operand
+        if (formula.isEmpty() && last_result != 0){
+          formula.enterNode(last_result, input_char);
+          last_result = formula.computeFormula();
+
+          calculator_display.update_top_display(input_char);
+          calculator_display.print_result(last_result);
+          state = result;
+        }
       }
       break;
 
@@ -88,6 +108,8 @@ void calculator::operate_input(char input_char) {
         calculator_display.shift_bottom_display(input_char);
         state = decminal;
       } else if (isoperator(input_char)) {
+        formula.enterNode(last_result, input_char);
+        
         calculator_display.update_top_display(input_char);
         calculator_display.clear_bottom_display();
         state = operating;

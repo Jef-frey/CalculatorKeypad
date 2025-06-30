@@ -29,70 +29,7 @@ void loop() {
   if (read_switch != '?') {
 //    if keypad mode is selected
     cal.operate_input(read_switch);
-    Serial.println(cal.calculator_display.top_index);
+    Serial.println("Hello World\n");
   }
   
-//  read_switch = get_pressed_switch();
-//  if (read_switch != ' ') {
-//    switch_debounce();
-//    
-//    if (state == operand_1) {
-//        if (isdigit(read_switch) && read_switch != '0') {
-//            if (entry_flag == 0) {
-//              display_formula.reset_buf();
-//              if (display_answer_on_formula == 1){
-//                display_formula.display_write(display_operand);
-//                display_answer_on_formula = 2;
-//              }
-//              display_operand.reset_buf();
-//            }
-//            display_operand.insert_to_end(read_switch);
-//            state = operand_2;
-//        } else if (read_switch == '.') {
-//            if (entry_flag == 0) {
-//              display_formula.reset_buf();
-//              if (display_answer_on_formula == 1){
-//                display_formula.display_write(display_operand);
-//                display_answer_on_formula = 2;
-//              }
-//              display_operand.reset_buf();
-//            }
-//            display_operand.shift_in(read_switch);
-//            state = operand_2;
-//        } else if (isoperator(read_switch) && entry_flag != 0) {
-//        //this is for when user misclicked operator after entry, user can click another operator to change it
-//        //needs to check for entry not empty first, else operator switch does nothing
-//            cal_formula.setOperator(read_switch);
-//            display_formula.insert_to_end(read_switch);
-//        }
-//    } else if (state == operand_2) {
-//        if (isdigit(read_switch)) {
-//            display_operand.shift_in(read_switch);
-//        } else if (read_switch == '.' && display_operand.is_char_in_array('.') == 0) {
-//            display_operand.shift_in(read_switch);
-//        } else if (isoperator(read_switch)) {
-//            cal_formula.enterNode(atof(display_operand.get_display_arr()), read_switch, entry_flag);
-//            
-//            entry_flag = 1;
-//            if (display_answer_on_formula == 2){
-//              display_formula.reset_buf();
-//              display_answer_on_formula = 0;
-//            }
-//            display_formula.shift_in_arr(display_operand, read_switch);
-//            display_operand.reset_buf();
-//            state = operand_1;
-//        } else if (read_switch == 'E') {
-//            cal_formula.enterNode(atof(display_operand.get_display_arr()), read_switch, entry_flag);
-//
-//            entry_flag = 0;
-//            display_answer_on_formula = 1;
-//            display_formula.shift_in_arr(display_operand, read_switch);
-//            snprintf(display_operand.get_display_arr(), ARR_SIZE, "%20.10g", cal_formula.computeFormula());
-//            state = operand_1;
-//        }
-//    }
-//    update_formula(display_formula.get_display_arr(), display_operand.get_display_arr()); 
-//
-//  }
-
 }
