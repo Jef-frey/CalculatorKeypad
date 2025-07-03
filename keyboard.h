@@ -5,7 +5,7 @@
 #include "USBHIDKeyboard.h"
 
 const int KEY_COUNT = 17;
-const int MODE_SEL_PIN = 7;
+const int MODE_SEL_PIN = 5;
 
 const int  KEY_PINS[KEY_COUNT] = {  21, 47, 4, 45,  0, 35, 36, 37, 38, 39, 40, 41, 42,  2,  1, 44, 43 };
 const char KEY_CHAR[KEY_COUNT] = { 'N','/','*','-','+','E','9','8','7','6','5','4','3','2','1','0','.' };
