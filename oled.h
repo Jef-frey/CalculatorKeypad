@@ -24,6 +24,6 @@ void oled_initialize();
 
 void print_calculator(display_buf calculator_display);
 
-//void update_formula(char *row_1, char *row_2);
+void print_keypad();
 
 #endif
