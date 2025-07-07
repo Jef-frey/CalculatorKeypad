@@ -102,6 +102,22 @@ void print_calculator(display_buf calculator_display) {
     u8g2.println(calculator_display.bottom_display);
   } while ( u8g2.nextPage() );
 }
-void print_keypad() {
-  u8g2.clearBuffer();
+
+void print_battery(bool pg, bool chg) {
+  u8g2.firstPage();
+  do {
+    u8g2.setFont(Helvetica_custom);
+    u8g2.setCursor(0, 31);
+    if (pg){
+      u8g2.println("power bad");
+    } else {
+      u8g2.println("power good");
+    }
+    u8g2.setCursor(0, 63);
+    if (chg){
+      u8g2.println("Charging");
+    } else {
+      u8g2.println("Finished charging");
+    }
+  } while ( u8g2.nextPage() );
 }

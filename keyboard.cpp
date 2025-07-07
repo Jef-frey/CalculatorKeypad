@@ -5,7 +5,6 @@ void keyboard_initialize() {
   for (int i = 0; i < KEY_COUNT; i++) {
     pinMode(KEY_PINS[i], INPUT_PULLUP);
   }
-  pinMode(MODE_SEL_PIN, INPUT_PULLUP);
 }
 
 char get_pressed_switch(calculatorkeypad_mode device_mode) {

@@ -24,6 +24,7 @@ void oled_initialize();
 
 void print_calculator(display_buf calculator_display);
 
-void print_keypad();
+// output status of the battery to screen
+void print_battery(bool pg, bool chg);
 
 #endif

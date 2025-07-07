@@ -1,5 +1,7 @@
 #include "oled.h"
 
+#include "control.h"
+
 #include "calculator.h"
 #include "calculator_display.h"
 #include "keyboard.h"
@@ -12,20 +14,22 @@ char read_switch;
 calculator cal;
 USBHIDKeyboard Keyboard;
 calculatorkeypad_mode device_mode; 
-calculatorkeypad_mode prev_device_mode; 
+battery battery_status;
 
 void IRAM_ATTR device_mode_control() {
   if (digitalRead(MODE_SEL_PIN) == HIGH) {
     cal.calculator_on();
     device_mode = calculator_mode;
   } else {
-    print_keypad();
+    battery_status = get_bat_status();
+    print_battery(battery_status.pg, battery_status.chg);
     device_mode = keypad_mode;
   }
 }
 
 void setup() {  
   // initialization
+  control_initialize();
   keyboard_initialize();
   oled_initialize();
 
@@ -34,19 +38,11 @@ void setup() {
 
   attachInterrupt(MODE_SEL_PIN, device_mode_control, CHANGE);
 
-  // display the screen as initial state if device is on calculator_mode 
-  if (digitalRead(MODE_SEL_PIN) == HIGH) {
-    cal.calculator_on();
-    device_mode = calculator_mode;
-  } else {
-    print_keypad();
-    device_mode = keypad_mode;
-  }
+  // display the screen's initial state 
+  device_mode_control();
 }
 
 void loop() {
-
-
   read_switch = get_pressed_switch(device_mode);
 
   if (read_switch != '?') {
@@ -56,6 +52,12 @@ void loop() {
       cal.operate_input(read_switch);
     }
   }
+
+  if (device_mode == keypad_mode) {
+    battery_status = get_bat_status();
+    print_battery(battery_status.pg, battery_status.chg);
+  }
   
 }
 
+// 45
