@@ -21,6 +21,7 @@ Pins used for the keypad connections are written on the [`keyboard.h`](https://g
 # Future plans
 Add a Lipo battery and charging circuit to make the device portable<br />
 Design a PCB board for this device<br />
-![alt_text](https://github.com/Jef-frey/CalculatorKeypad/blob/67aee30069895d21bcba6e67a9b299f4eb617843/image/CalculatorKeypad.png)
 Use ESP32S3 module instead of a development board<br />
+![alt_text](image/EasyEDA_CalculatorKeypadv2_Schematic.pdf)
+![alt_text](image/CalculatorKeypad.png)
 Implement Bluetooth feature for the keypad<br />
