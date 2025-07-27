@@ -19,7 +19,7 @@ Pins used and connected for the OLED display are written on the [`oled.cpp`](sof
 Pins used for the keypad connections are written on the [`keyboard.h`](https://github.com/Jef-frey/CalculatorKeypad/blob/83cf7621939669beaf04693edd044f52db3b64c4/software/keyboard.h) file inside the variables KEY_PINS and MODE_SEL_PIN, different pins on the board can be used if available.<br />
 
 # Future plans
-Add a Lipo battery and charging circuit to make the device portable<br />
+Add a Lipo battery and charging circuit to make the device portable (ESP32-C3-DevKit-RUST-1 schematic was used)<br />
 Design a PCB board for this device<br />
 Use ESP32S3 module instead of a development board<br />
 ![alt_text](image/EasyEDA_CalculatorKeypadv2_Schematic.pdf)
