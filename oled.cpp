@@ -14,7 +14,7 @@
 #include <iostream>
 using namespace std;
 
-U8G2_SH1122_256X64_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ CS_PIN, /* dc=*/ DC_PIN, /* reset=*/ RST_PIN);
+U8G2_SH1122_256X64_1_4W_HW_SPI u8g2(U8G2_R2, /* cs=*/ CS_PIN, /* dc=*/ DC_PIN, /* reset=*/ RST_PIN);
 
 const uint8_t Helvetica_custom[2238] U8G2_FONT_SECTION("Helvetica_custom") = 
   "^\0\4\3\5\5\3\5\6\30\31\0\373\23\373\23\373\2\335\6\17\10\241!\12b\32\232\360\1E\224"
@@ -103,21 +103,21 @@ void print_calculator(display_buf calculator_display) {
   } while ( u8g2.nextPage() );
 }
 
-void print_battery(bool pg, bool chg) {
+void print_battery(battery battery_status) {
   u8g2.firstPage();
   do {
     u8g2.setFont(Helvetica_custom);
     u8g2.setCursor(0, 31);
-    if (pg){
-      u8g2.println("power bad");
+    if (battery_status.pwr){
+      u8g2.println("External Power: PRESENT");
     } else {
-      u8g2.println("power good");
+      u8g2.println("External Power: NOT PRESENT");
     }
+
     u8g2.setCursor(0, 63);
-    if (chg){
-      u8g2.println("Charging");
-    } else {
-      u8g2.println("Finished charging");
-    }
+    u8g2.print("Battery: ");
+    u8g2.print(battery_status.bat);
+    u8g2.println("V");
+
   } while ( u8g2.nextPage() );
 }

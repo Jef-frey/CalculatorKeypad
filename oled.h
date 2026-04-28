@@ -15,16 +15,17 @@
 #ifndef OLED_H
 #define OLED_H
 #include "calculator_display.h"
+#include "control.h"
 
-const int RST_PIN = 10;
-const int DC_PIN = 9;
-const int CS_PIN = 46;
+#define RST_PIN 10
+#define DC_PIN   9
+#define CS_PIN  46
 
 void oled_initialize();
 
 void print_calculator(display_buf calculator_display);
 
-// output status of the battery to screen
-void print_battery(bool pg, bool chg);
+// output charging status to screen
+void print_battery(battery battery_status);
 
 #endif

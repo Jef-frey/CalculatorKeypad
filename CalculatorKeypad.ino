@@ -1,6 +1,5 @@
-#include "oled.h"
-
 #include "control.h"
+#include "oled.h"
 
 #include "calculator.h"
 #include "calculator_display.h"
@@ -22,7 +21,7 @@ void IRAM_ATTR device_mode_control() {
     device_mode = calculator_mode;
   } else {
     battery_status = get_bat_status();
-    print_battery(battery_status.pg, battery_status.chg);
+    print_battery(battery_status);
     device_mode = keypad_mode;
   }
 }
@@ -40,6 +39,7 @@ void setup() {
 
   // display the screen's initial state 
   device_mode_control();
+
 }
 
 void loop() {
@@ -55,9 +55,8 @@ void loop() {
 
   if (device_mode == keypad_mode) {
     battery_status = get_bat_status();
-    print_battery(battery_status.pg, battery_status.chg);
+    print_battery(battery_status);
   }
-  
 }
 
-// 45
+// 
