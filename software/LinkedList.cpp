@@ -90,9 +90,8 @@ long double LinkedList::computeFormula() {
     deleteHead();
   }
 
-  Node* temp = head;
-  delete temp;
-  
+  deleteHead();
+
   return result;
 }
 
