@@ -1,7 +1,7 @@
 # CalculatorKeypad(WIP)
 This project is still a work in progress, the goal is to create a device that can switch between calculator and computer keypad function with the flip of a switch 
-<img width="1543" height="1697" alt="keypad_mode" src="https://github.com/user-attachments/assets/b3ec0a80-4e9a-4d7a-82a1-fcebf6f34e78" />
-<img width="1600" height="1842" alt="calculator_mode" src="https://github.com/user-attachments/assets/49f07bc2-d8c0-4ed5-8083-b835f50fa5a4" />
+<img width="514" height="565" alt="keypad_mode" src="https://github.com/user-attachments/assets/b3ec0a80-4e9a-4d7a-82a1-fcebf6f34e78" />
+<img width="533" height="614" alt="calculator_mode" src="https://github.com/user-attachments/assets/49f07bc2-d8c0-4ed5-8083-b835f50fa5a4" />
 
 # Requirements
 ## Hardware
