@@ -14,15 +14,18 @@ calculator cal;
 USBHIDKeyboard Keyboard;
 calculatorkeypad_mode device_mode; 
 battery battery_status;
+int bat_flag = 1;
 
 void IRAM_ATTR device_mode_control() {
   if (digitalRead(MODE_SEL_PIN) == HIGH) {
     cal.calculator_on();
     device_mode = calculator_mode;
   } else {
-    battery_status = get_bat_status();
+    bat_flag = 1;
+    battery_status = get_bat_status(bat_flag);
     print_battery(battery_status);
     device_mode = keypad_mode;
+    bat_flag = 0;
   }
 }
 
@@ -54,7 +57,7 @@ void loop() {
   }
 
   if (device_mode == keypad_mode) {
-    battery_status = get_bat_status();
+    battery_status = get_bat_status(bat_flag);
     print_battery(battery_status);
   }
 }

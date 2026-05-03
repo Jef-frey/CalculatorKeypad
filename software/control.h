@@ -39,10 +39,12 @@ struct battery{
 // Anything above 400mV means external power present
 #define PWR_PRESENT_THRESHOLD 400
 
+#define BAT_UPDATE_INTERVAL 1000
+
 void control_initialize();
 
 // return status of the battery
-battery get_bat_status();
+battery get_bat_status(int bat_flag);
 
 float readVoltage(uint8_t pin, float dividerRatio);
 

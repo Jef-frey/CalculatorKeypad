@@ -109,9 +109,9 @@ void print_battery(battery battery_status) {
     u8g2.setFont(Helvetica_custom);
     u8g2.setCursor(0, 31);
     if (battery_status.pwr){
-      u8g2.println("External Power: PRESENT");
+      u8g2.println("USB powered");
     } else {
-      u8g2.println("External Power: NOT PRESENT");
+      u8g2.println("Battery powered");
     }
 
     u8g2.setCursor(0, 63);
